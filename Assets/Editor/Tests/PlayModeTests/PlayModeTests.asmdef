@@ -1,0 +1,25 @@
+{
+    "name": "PlayModeTests",
+    "rootNamespace": "",
+    "references": [
+        "RCcAR",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "MixedReality.Toolkit.UXComponents",
+        "MixedReality.Toolkit.Core",
+        "MixedReality.Toolkit.UXCore"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

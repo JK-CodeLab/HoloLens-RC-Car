@@ -1,0 +1,19 @@
+{
+    "name": "RCcAR",
+    "rootNamespace": "",
+    "references": [
+        "MixedReality.Toolkit.Core",
+        "MixedReality.Toolkit.Input",
+        "MixedReality.Toolkit.UXCore",
+        "MixedReality.Toolkit.UXComponents"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
