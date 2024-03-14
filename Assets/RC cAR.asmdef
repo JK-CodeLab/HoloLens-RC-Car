@@ -5,7 +5,11 @@
         "MixedReality.Toolkit.Core",
         "MixedReality.Toolkit.Input",
         "MixedReality.Toolkit.UXCore",
-        "MixedReality.Toolkit.UXComponents"
+        "MixedReality.Toolkit.UXComponents",
+        "MixedReality.Toolkit.SpatialManipulation",
+        "MixedReality.Toolkit.Experimental.UI",
+        "MixedReality.Toolkit.UI",
+        "Unity.XR.ARFoundation"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
