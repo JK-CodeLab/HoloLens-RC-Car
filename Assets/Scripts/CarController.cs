@@ -21,8 +21,8 @@ public class CarController : MonoBehaviour
     private float _verticalInput;
     private float _horizontalInput;
     private float _currentSteerAngle;
-    
-    private const float MotorForce = 550;
+
+    [SerializeField] private float MotorForce = 550;
     private const float MaxSteerAngle = 15;
     private float _lastVerticalTime;
 
