@@ -17,12 +17,14 @@ public class CarController : MonoBehaviour
     
     private Rigidbody _carRigidBody;
     private GameObject _carModel;
+    [SerializeField] private float carScale = 0.15f;
 
     private float _verticalInput;
     private float _horizontalInput;
     private float _currentSteerAngle;
 
     [SerializeField] private float MotorForce = 550;
+    [SerializeField] private float BrakeForce = 100;
     private const float MaxSteerAngle = 15;
     private float _lastVerticalTime;
 
@@ -45,14 +47,16 @@ public class CarController : MonoBehaviour
         _verticalSlider = GameObject.Find("VerticalSlider").GetComponent<Slider>();
         _horizontalSlider = GameObject.Find("HorizontalSlider").GetComponent<Slider>();
         _carRigidBody = GetComponent<Rigidbody>();
-        SetCenterOfMass();
+        ResetCarProperties();
     }
     
-    private void SetCenterOfMass()
+    public void ResetCarProperties()
     {
-        var centerOfMass = _carRigidBody.centerOfMass;
-        centerOfMass.y *= 0.5f;
-        _carRigidBody.centerOfMass = centerOfMass;
+        transform.localScale = new Vector3(carScale, carScale, carScale);
+        _carRigidBody.ResetCenterOfMass();
+        // var centerOfMass = _carRigidBody.centerOfMass;
+        // centerOfMass.y *= 0.5f;
+        // _carRigidBody.centerOfMass = centerOfMass;
     }
 
     private void FixedUpdate()
@@ -67,8 +71,20 @@ public class CarController : MonoBehaviour
     
     private void HandleMotor()
     {
-        frontLeftWheelCollider.motorTorque = _verticalInput * MotorForce;
-        frontRightWheelCollider.motorTorque = _verticalInput * MotorForce;
+        if (_verticalInput == 0)
+        {
+            frontLeftWheelCollider.brakeTorque = BrakeForce;
+            frontRightWheelCollider.brakeTorque = BrakeForce;
+            frontLeftWheelCollider.motorTorque = 0;
+            frontRightWheelCollider.motorTorque = 0;
+        }
+        else
+        {
+            frontLeftWheelCollider.brakeTorque = 0;
+            frontRightWheelCollider.brakeTorque = 0;
+            frontLeftWheelCollider.motorTorque = _verticalInput * MotorForce;
+            frontRightWheelCollider.motorTorque = _verticalInput * MotorForce;
+        }
     }
     
     private void HandleSteering()
