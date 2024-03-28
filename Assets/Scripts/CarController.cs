@@ -132,27 +132,29 @@ public class CarController : MonoBehaviour
         } 
         if (transformUp.y < 0)
         {
-            _carRigidBody.AddForce(Vector3.up * 2500, ForceMode.Impulse);
+            _carRigidBody.AddForce(Vector3.up * 5000, ForceMode.Impulse);
             StartCoroutine(WaitAndRotate());
             return true;
         }
         switch (transformUp.x)
         {
             case > 0.75f:
-                _carRigidBody.AddTorque(Vector3.forward * 100, ForceMode.Impulse);        
+                _carRigidBody.AddForce(Vector3.up * 5000, ForceMode.Impulse);
+                StartCoroutine(WaitAndRotate(0.2f, 50));
                 return true;
             case < -0.75f:
-                _carRigidBody.AddTorque(Vector3.back * 100, ForceMode.Impulse);
+                _carRigidBody.AddForce(Vector3.up * 5000, ForceMode.Impulse);
+                StartCoroutine(WaitAndRotate(0.2f,-50));
                 return true;
             default:
                 return false;
         }
     }
     
-    private IEnumerator WaitAndRotate()
+    private IEnumerator WaitAndRotate(float delay = 0.1f, int force = 100)
     {
-        yield return new WaitForSeconds(0.1f);
-        _carRigidBody.AddTorque(Vector3.forward * 100, ForceMode.Impulse);
+        yield return new WaitForSeconds(delay);
+        _carRigidBody.AddTorque(Vector3.forward * force, ForceMode.Impulse);
     }
     
     /// <summary>
