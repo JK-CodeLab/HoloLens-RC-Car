@@ -330,7 +330,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!154 &1700813114
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -4709,6 +4709,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6133552950383156441, guid: e9be6b9d71ce20345b55b654f6eca5d9, type: 3}
+      propertyPath: MotorForce
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 6133552950383156447, guid: e9be6b9d71ce20345b55b654f6eca5d9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5273,15 +5277,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7134840290439100556, guid: 269f65b91eeb87142a7da13cd2fb5cd0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7134840290439100556, guid: 269f65b91eeb87142a7da13cd2fb5cd0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7134840290439100556, guid: 269f65b91eeb87142a7da13cd2fb5cd0, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7134840290439100556, guid: 269f65b91eeb87142a7da13cd2fb5cd0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6626,7 +6630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a69521b3ce9adad4da2e79bb15ae34ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <DialogPrefab>k__BackingField: {fileID: 6930810733556124559, guid: cca6164bb2744884a92a100266f5f3aa, type: 3}
+  <DialogPrefab>k__BackingField: {fileID: 3567424964673187422, guid: 09347d1797adef348965ca8d924391de, type: 3}
 --- !u!1 &7777663910664481899
 GameObject:
   m_ObjectHideFlags: 0
