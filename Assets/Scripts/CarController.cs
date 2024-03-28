@@ -1,17 +1,25 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using MixedReality.Toolkit.UX;
 using UnityEngine;
-using UnityEngine.Serialization;
+
 
 /// <summary>
 /// Class to control the car in the game.
-/// Source: https://www.youtube.com/watch?v=Z4HA8zJhGEk&ab_channel=GameDevChef
+/// Authors: Joseph Chun, Kira Yoon
+/// Date: March 27, 2024
+/// Sources:
+/// https://www.youtube.com/watch?v=Z4HA8zJhGEk&ab_channel=GameDevChef
+/// https://learn.microsoft.com/en-us/windows/mixed-reality/mrtk-unity/mrtk3-uxcomponents/packages/uxcomponents/slider
+/// https://docs.unity3d.com/Manual/class-WheelCollider.html
+/// https://docs.unity3d.com/ScriptReference/Rigidbody.html
+/// https://docs.unity3d.com/Manual/VectorCookbook.html
+/// https://docs.unity3d.com/Manual/class-Quaternion.html
 /// </summary>
 public class CarController : MonoBehaviour
 {
+    /// <summary>
+    /// Initialize private variables for the car controller.
+    /// </summary>
     private Slider _verticalSlider;
     private Slider _horizontalSlider;
     
@@ -23,11 +31,17 @@ public class CarController : MonoBehaviour
     private float _horizontalInput;
     private float _currentSteerAngle;
 
+    /// <summary>
+    /// Modifiers for the car's motor and steering.
+    /// </summary>
     [SerializeField] private float MotorForce = 550;
     [SerializeField] private float BrakeForce = 100;
     private const float MaxSteerAngle = 15;
     private float _lastVerticalTime;
 
+    /// <summary>
+    /// Fields for the wheel colliders and transforms of the car model.
+    /// </summary>
     [SerializeField] private WheelCollider frontLeftWheelCollider;
     [SerializeField] private WheelCollider frontRightWheelCollider;
     [SerializeField] private WheelCollider rearLeftWheelCollider;
@@ -50,15 +64,18 @@ public class CarController : MonoBehaviour
         ResetCarProperties();
     }
     
+    /// <summary>
+    /// Rescale the car and reset the center of mass.
+    /// </summary>
     public void ResetCarProperties()
     {
         transform.localScale = new Vector3(carScale, carScale, carScale);
         _carRigidBody.ResetCenterOfMass();
-        // var centerOfMass = _carRigidBody.centerOfMass;
-        // centerOfMass.y *= 0.5f;
-        // _carRigidBody.centerOfMass = centerOfMass;
     }
 
+    /// <summary>
+    /// FixedUpdate method to update the car's movement and rotation.
+    /// </summary>
     private void FixedUpdate()
     {
         _horizontalInput = _horizontalSlider.Value;
@@ -69,6 +86,9 @@ public class CarController : MonoBehaviour
         ResetCarIfUpdsideDown();
     }
     
+    /// <summary>
+    /// Uses vertical input and wheel colliders to control the car's motor.
+    /// </summary>
     private void HandleMotor()
     {
         if (_verticalInput == 0)
@@ -87,6 +107,9 @@ public class CarController : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Handles the steering of the car using horizontal input and wheel colliders.
+    /// </summary>
     private void HandleSteering()
     {
         _currentSteerAngle = MaxSteerAngle * _horizontalInput;
@@ -94,6 +117,9 @@ public class CarController : MonoBehaviour
         frontRightWheelCollider.steerAngle = _currentSteerAngle;
     }
     
+    /// <summary>
+    /// Update the wheels' position and rotation.
+    /// </summary>
     private void UpdateWheels()
     {
         UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform);
@@ -102,6 +128,11 @@ public class CarController : MonoBehaviour
         UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform);
     }
     
+    /// <summary>
+    /// Update a single wheel's position and rotation.
+    /// </summary>
+    /// <param name="wheelCollider"></param>
+    /// <param name="wheelTransform"></param>
     private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
     {
         wheelCollider.GetWorldPose(out var pos, out var rot);
@@ -109,6 +140,9 @@ public class CarController : MonoBehaviour
         wheelTransform.position = pos;
     }
 
+    /// <summary>
+    /// Determine if the car has been upside down for more than 3 seconds and reset the car.
+    /// </summary>
     private void ResetCarIfUpdsideDown()
     {
         var currentTime = Time.time;
@@ -123,6 +157,10 @@ public class CarController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Flip the car if it is upside down.
+    /// </summary>
+    /// <returns></returns>
     private bool FlipCar()
     {
         var transformUp = transform.up;
@@ -151,6 +189,12 @@ public class CarController : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Wait for a set amount of car and adds a rotation force to the car.
+    /// </summary>
+    /// <param name="delay"></param>
+    /// <param name="force"></param>
+    /// <returns></returns>
     private IEnumerator WaitAndRotate(float delay = 0.1f, int force = 100)
     {
         yield return new WaitForSeconds(delay);

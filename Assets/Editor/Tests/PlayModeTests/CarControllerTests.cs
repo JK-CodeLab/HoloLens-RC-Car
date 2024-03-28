@@ -28,6 +28,7 @@
 //         [SetUp]
 //         public void Setup()
 //         {
+//             _remote = Instantiate(_remote);
 //             _object = GameObject.CreatePrimitive(PrimitiveType.Cube);
 //             _carController = _object.AddComponent<CarController>();
 //             _carController.carRigidBody = _object;
