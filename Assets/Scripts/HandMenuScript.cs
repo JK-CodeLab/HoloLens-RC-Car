@@ -24,7 +24,6 @@ public class HandMenuScript : MonoBehaviour
             dialogPool = GetComponent<DialogPool>();
         }
         
-        meshManager = GetComponent<ARMeshManager>();
         _carGameObject = GameObject.Find(carName);
         _carRigidBody = _carGameObject.GetComponent<Rigidbody>();
         _carGameObject.SetActive(false);
@@ -58,67 +57,61 @@ public class HandMenuScript : MonoBehaviour
             .SetBody("Are you sure you want to exit?")
             .SetPositive("Yes", (args) =>
             {
-                Debug.Log("Yes button clicked");
                 Application.Quit();
             })
-            .SetNegative("No", (args) => Debug.Log("No button clicked"));
+            .SetNegative("No");
 
         dialog.Show();
     }
 
-    private void ResetMeshManager()
+    private void ShowMeshManager(bool state)
     {
         try
         {
-            meshManager.DestroyAllMeshes();
-            var meshPrefab = meshManager.meshPrefab;
-            if (meshPrefab != null)
+            meshManager.meshPrefab.GetComponent<Renderer>().enabled = state;
+            
+            var meshes = meshManager.meshes;
+            foreach (var meshFilter in meshes)
             {
-                Renderer meshRenderer = meshPrefab.GetComponent<Renderer>();
-                if (meshRenderer != null)
-                {
-                    meshRenderer.enabled = true;
-                }
+                meshFilter.GetComponent<Renderer>().enabled = state;
             }
-
+            
         }
         catch (Exception e)
         {
-            Debug.LogError(e);
+            Debug.Log(e);
         }
     }
-    
-    private void HideMeshRenderer()
+
+    /// <summary>
+    /// Source: https://forum.unity.com/threads/how-to-reset-meshes-generated-by-armeshmanager.1451887/
+    /// Only way to reset the mesh manager is to disable and enable it
+    /// </summary>
+    public void ResetMeshManager()
     {
         try
         {
-            var meshPrefab = meshManager.meshPrefab;
-            if (meshPrefab != null)
-            {
-                Renderer meshRenderer = meshPrefab.GetComponent<Renderer>();
-                if (meshRenderer != null)
-                {
-                    meshRenderer.enabled = false;
-                }
-            }
-
+            meshManager.enabled = false;
+            meshManager.DestroyAllMeshes();
+            ShowMeshManager(true);
+            meshManager.enabled = true;
         }
         catch (Exception e)
         {
-            Debug.LogError(e);
+            Debug.Log(e);
         }
     }
     
     public void CreateRemapRoomDialog()
     {
-        ResetMeshManager();
         IDialog dialog = dialogPool.Get()
             .SetHeader("Reset Mapping")
             .SetBody("Walk around to map your environment. After you are done mapping, click Finish Mapping.")
             .SetNeutral("Finish Mapping", (args) =>
             {
-                HideMeshRenderer();
-                Debug.Log("neutral button clicked");
+                meshManager.enabled = false;
+                ShowMeshManager(false);
+                meshManager.enabled = true;
             });
         dialog.Show();
     }
