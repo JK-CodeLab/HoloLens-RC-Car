@@ -21,9 +21,26 @@ public class CarController : MonoBehaviour
     /// Initialize private variables for the car controller.
     /// </summary>
     private Slider _verticalSlider;
+    public Slider VerticalSlider
+    {
+        get => _verticalSlider;
+        set => _verticalSlider = value;
+    }
+
     private Slider _horizontalSlider;
+    public Slider HorizontalSlider
+    {
+        get => _horizontalSlider;
+        set => _horizontalSlider = value;
+    }
     
     private Rigidbody _carRigidBody;
+    public Rigidbody CarRigidBody
+    {
+        get => _carRigidBody;
+        set => _carRigidBody = value;
+    }
+
     private GameObject _carModel;
     [SerializeField] private float carScale = 0.15f;
 
@@ -42,15 +59,15 @@ public class CarController : MonoBehaviour
     /// <summary>
     /// Fields for the wheel colliders and transforms of the car model.
     /// </summary>
-    [SerializeField] private WheelCollider frontLeftWheelCollider;
-    [SerializeField] private WheelCollider frontRightWheelCollider;
-    [SerializeField] private WheelCollider rearLeftWheelCollider;
-    [SerializeField] private WheelCollider rearRightWheelCollider;
+    [SerializeField] public WheelCollider frontLeftWheelCollider;
+    [SerializeField] public WheelCollider frontRightWheelCollider;
+    [SerializeField] public WheelCollider rearLeftWheelCollider;
+    [SerializeField] public WheelCollider rearRightWheelCollider;
 
-    [SerializeField] private Transform frontLeftWheelTransform;
-    [SerializeField] private Transform frontRightWheelTransform;
-    [SerializeField] private Transform rearLeftWheelTransform;
-    [SerializeField] private Transform rearRightWheelTransform;
+    [SerializeField] public Transform frontLeftWheelTransform;
+    [SerializeField] public Transform frontRightWheelTransform;
+    [SerializeField] public Transform rearLeftWheelTransform;
+    [SerializeField] public Transform rearRightWheelTransform;
 
 
     /// <summary>
@@ -58,10 +75,16 @@ public class CarController : MonoBehaviour
     /// </summary>
     public void Awake()
     {
-        _verticalSlider = GameObject.Find("VerticalSlider").GetComponent<Slider>();
-        _horizontalSlider = GameObject.Find("HorizontalSlider").GetComponent<Slider>();
-        _carRigidBody = GetComponent<Rigidbody>();
-        ResetCarProperties();
+        var _vSlider = GameObject.Find("VerticalSlider")?.GetComponent<Slider>();
+        var _hSlider = GameObject.Find("HorizontalSlider")?.GetComponent<Slider>();
+
+        if (_vSlider != null && _hSlider != null)
+        {
+            _verticalSlider = _vSlider;
+            _horizontalSlider = _hSlider;
+            _carRigidBody = GetComponent<Rigidbody>();
+            ResetCarProperties();
+        }
     }
     
     /// <summary>
