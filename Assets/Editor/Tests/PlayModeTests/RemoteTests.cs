@@ -19,19 +19,7 @@ namespace Editor.Tests.PlayModeTests
     /// </summary>
     public class RemoteTests
     {
-        private SliderScript _sliderScript;
         private readonly GameObject _remote = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/UI/Remote.prefab");
-        private Slider _verticalSlider;
-        private Slider _horizontalSlider;
-
-        /// <summary>
-        /// This method sets up the tests by creating a remote object from the prefab and adding a SliderScript to it
-        /// </summary>
-        [SetUp]
-        public void Setup()
-        {
-            //_remote = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Remote.prefab");
-        }
 
         /// <summary>
         /// This method asserts that all sliders in the remote have a default value of 0
