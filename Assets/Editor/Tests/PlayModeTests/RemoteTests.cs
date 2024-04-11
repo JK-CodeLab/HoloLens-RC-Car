@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using Object = UnityEngine.Object;
 using Slider = MixedReality.Toolkit.UX.Slider;
 
+
 /// <summary>
 /// This module contains the tests for the Remote object
 /// </summary>

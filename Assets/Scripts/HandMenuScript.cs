@@ -26,7 +26,6 @@ public class HandMenuScript : MonoBehaviour
     [SerializeField] private string carName = "RaceCar_Blue";
     private GameObject _carGameObject;
     private Rigidbody _carRigidBody;
-    private Vector3 _carSize;
     
     /// <summary>
     /// Awake method to initialize the Hand menu script.
@@ -41,6 +40,7 @@ public class HandMenuScript : MonoBehaviour
         _carGameObject = GameObject.Find(carName);
         _carRigidBody = _carGameObject.GetComponent<Rigidbody>();
         _carGameObject.SetActive(false);
+        ShowMeshManager(false);
     }
     
     /// <summary>
@@ -51,8 +51,7 @@ public class HandMenuScript : MonoBehaviour
         if (_carRigidBody == null || Camera.main == null) return;
 
         _carGameObject.SetActive(true);
-        _carSize = _carGameObject.GetComponent<Collider>().bounds.size;
-        _spawnOffSet = new Vector3(0, _carSize.y, _carSize.z * 3);
+        _spawnOffSet = new Vector3(0, .14f, 1.5f);
 
         var rbTransform = _carRigidBody.transform;
         var cameraTransform = Camera.main.transform;
@@ -132,7 +131,10 @@ public class HandMenuScript : MonoBehaviour
     {
         IDialog dialog = dialogPool.Get()
             .SetHeader("Reset Mapping")
-            .SetBody("Walk around to map your environment. After you are done mapping, click Finish Mapping.")
+            .SetBody(
+                "Walk around to map your environment. " +
+                "After you are done mapping, click Finish Mapping."
+                )
             .SetNeutral("Finish Mapping", (args) =>
             {
                 meshManager.enabled = false;
