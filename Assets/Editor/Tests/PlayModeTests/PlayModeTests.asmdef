@@ -8,6 +8,7 @@
         "MixedReality.Toolkit.UXComponents",
         "MixedReality.Toolkit.Core",
         "MixedReality.Toolkit.UXCore",
+        "Unity.XR.Interaction.Toolkit",
         "RCcAR.Assets.Scripts"
     ],
     "includePlatforms": [],

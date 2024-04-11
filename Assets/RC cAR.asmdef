@@ -9,6 +9,7 @@
         "MixedReality.Toolkit.SpatialManipulation",
         "MixedReality.Toolkit.Experimental.UI",
         "MixedReality.Toolkit.UI",
+        "Unity.XR.Interaction.Toolkit",
         "Unity.XR.ARFoundation"
     ],
     "includePlatforms": [],
