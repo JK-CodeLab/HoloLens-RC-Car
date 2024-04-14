@@ -103,7 +103,7 @@ Resizing can be done like the image below but with two hands.
 <img src="./images/image7.png" width="500">
 
 ## Video Demo
-
+Youtube Link: https://youtu.be/1Fcv7xE1fmE
 ## Intended Users
 
 ### 1. Students and Educators
