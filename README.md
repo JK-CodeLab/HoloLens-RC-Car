@@ -87,11 +87,13 @@ Error messages and possible solutions:
 ### Using the Menu
 
 When you first start the application, you must remap the room. To do this, hold your left or right palm out in front of the HoloLens. A menu will appear with several buttons. Press the "Remap Room" button to remap the room. Once the room is remapped, you can press the "Reset Car" button to reset the car's position.
+
 <img src="./images/image5.png" width="500">
 
 ### Controlling the Car
 
 The car is controlled by the remote’s sliders. You can either pinch the sliders or push the sliders with your fingers.
+
 <img src="./images/remote.png" width="500">
 
 ### Manipulating the car model
@@ -103,7 +105,9 @@ Resizing can be done like the image below but with two hands.
 <img src="./images/image7.png" width="500">
 
 ## Video Demo
+
 Youtube Link: https://youtu.be/1Fcv7xE1fmE
+
 ## Intended Users
 
 ### 1. Students and Educators
