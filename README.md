@@ -106,7 +106,8 @@ Resizing can be done like the image below but with two hands.
 
 ## Video Demo
 
-Youtube Link: https://youtu.be/1Fcv7xE1fmE
+Video Demo on Youtube:
+[<img src="https://img.youtube.com/vi/1Fcv7xE1fmE/maxresdefault.jpg">](https://youtu.be/1Fcv7xE1fmE)
 
 ## Intended Users
 
