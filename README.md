@@ -104,7 +104,7 @@ Resizing can be done like the image below but with two hands.
 
 ## Video Demo
 
-## Users
+## Intended Users
 
 ### 1. Students and Educators
 
@@ -125,3 +125,9 @@ HoloLens developers may see the project as a source of inspiration or reference 
 ### Warning
 
 Potential HoloLens users should cross-reference Microsoft’s Product Safety Warnings and Instructions to ensure that they are safely using the product. The list of product safety warnings can be found [here](https://support.microsoft.com/en-gb/topic/product-safety-warnings-and-instructions-726eab87-f471-4ad8-48e5-9c25f68927ba).
+
+## Asset Sources
+
+### Car Model
+
+- [ARCADE: FREE Racing Car](https://assetstore.unity.com/packages/3d/vehicles/land/arcade-free-racing-car-161085)
